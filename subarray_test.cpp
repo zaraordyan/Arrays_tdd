@@ -1,6 +1,16 @@
 #include <gtest/gtest.h>
 #include "subarray.h" 
 
+TEST(isSubarrayTests, sizeof00false)
+{
+    EXPECT_TRUE(isSubarray(nullptr, 0, nullptr, 0));
+}
+
+TEST(isSubarrayTests, sizeof10false)
+{
+    EXPECT_TRUE(isSubarray((int[]){1}, 1, nullptr, 0));
+}
+
 TEST(isSubarrayTests, sizeof11false)
 {
     EXPECT_FALSE(isSubarray((int[]){1}, 1, (int[]){2}, 1));
