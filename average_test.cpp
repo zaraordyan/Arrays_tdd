@@ -1,6 +1,10 @@
 #include <gtest/gtest.h>
 #include "average.h" 
 
+TEST(AverageTest, sizeof0) {
+    EXPECT_EQ(average(nullptr,0), 0);
+}
+
 TEST(AverageTest, sizeof1) {
     EXPECT_EQ(average((float[]){2},1), 2);
 }
