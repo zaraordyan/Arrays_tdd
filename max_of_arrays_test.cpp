@@ -1,6 +1,13 @@
 #include <gtest/gtest.h>
 #include "max_of_arrays.h" 
 
+TEST(MaxOfArrayTest, sizeof0) {
+    EXPECT_EQ(findMax(nullptr,0), 0);
+}
+TEST(MaxIndOfArrayTest, sizeof0) {
+    EXPECT_EQ(findMaxIndex(nullptr,0), 0);
+}
+
 TEST(MaxOfArrayTest, sizeof1) {
     EXPECT_EQ(findMax((int[]){2},1), 2);
 }
