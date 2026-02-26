@@ -67,4 +67,27 @@ TEST(LinkedListTests, DeleteInsertElement)
     EXPECT_EQ(stringList.get(3), "wedffetg5");
 }
 
+TEST(LinkedListTests, copyConstr)
+{
+    LinkedList<int> intList1 = intList;
+    EXPECT_EQ(intList1.get(3), intList.get(3));
+    EXPECT_EQ(intList1.get(0), intList.get(0));
+
+    LinkedList<int> stringList1 = stringList;
+    EXPECT_EQ(stringList1.get(2), stringList.get(2));
+    EXPECT_EQ(stringList1.get(0), stringList.get(0));
+}
+
+TEST(LinkedListTests, copyOper)
+{
+    LinkedList<int> intList2;
+    intList2 = intList;
+    EXPECT_EQ(intList2.get(3), intList.get(3));
+    EXPECT_EQ(intList2.get(0), intList.get(0));
+
+    LinkedList<int> stringList2;
+    stringList2 = stringList;
+    EXPECT_EQ(stringList2.get(2), stringList.get(2));
+    EXPECT_EQ(stringList2.get(0), stringList.get(0));
+}
 

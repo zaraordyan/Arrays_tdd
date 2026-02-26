@@ -15,9 +15,10 @@ class LinkedList
 
     public:
     LinkedList() : head(nullptr) {}
-
+    LinkedList(const LinkedList<T>& other);
     ~LinkedList();
     void insert(T value);
     void deleteElement(int index);
     T get(int index) const;
+    LinkedList& operator=(const LinkedList& other);
 };

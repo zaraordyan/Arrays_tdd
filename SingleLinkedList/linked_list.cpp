@@ -69,3 +69,50 @@ T LinkedList<T>::get(int index) const {
 
     throw std::out_of_range("Index out of range");
 }
+
+template <typename T>
+LinkedList<T>& LinkedList<T>::operator=(const LinkedList<T>& other)
+{
+    if (this == &other)
+        return *this;
+
+    while (head != nullptr) {
+        Node* temp = head;
+        head = head->next;
+        delete temp;
+    }
+
+    if (other.head == nullptr) {
+        head = nullptr;
+        return *this;
+    }
+
+    head = new Node(other.head->data);
+    Node* current = head;
+    Node* otherCurrent = other.head->next;
+
+    while (otherCurrent != nullptr) {
+        current->next = new Node(otherCurrent->data);
+        current = current->next;
+        otherCurrent = otherCurrent->next;
+    }
+
+    return *this;
+}
+
+template <typename T>
+LinkedList<T>::LinkedList(const LinkedList<T>& other) : head(nullptr)
+{
+    if (other.head == nullptr)
+        return;
+
+    head = new Node(other.head->data);
+    Node* current = head;
+    Node* other_current = other.head->next;
+
+    while (other_current != nullptr) {
+        current->next = new Node(other_current->data);
+        current = current->next;
+        other_current = other_current->next;
+    }
+}
