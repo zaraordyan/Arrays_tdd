@@ -116,3 +116,27 @@ LinkedList<T>::LinkedList(const LinkedList<T>& other) : head(nullptr)
         other_current = other_current->next;
     }
 }
+
+template <typename T>
+LinkedList<T>::LinkedList(LinkedList<T>&& orig) : head(orig.head)
+{
+    orig.head = nullptr;
+}
+
+template <typename T>
+LinkedList<T>& LinkedList<T>::operator=(LinkedList<T>&& orig)
+{
+    if (this == &orig)
+        return *this;
+
+    while (head != nullptr) {
+        Node* temp = head;
+        head = head->next;
+        delete temp;
+    }
+
+    head = orig.head;
+    orig.head = nullptr;
+
+    return *this;
+}

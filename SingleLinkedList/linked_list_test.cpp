@@ -73,7 +73,7 @@ TEST(LinkedListTests, copyConstr)
     EXPECT_EQ(intList1.get(3), intList.get(3));
     EXPECT_EQ(intList1.get(0), intList.get(0));
 
-    LinkedList<int> stringList1 = stringList;
+    LinkedList<std::string> stringList1 = stringList;
     EXPECT_EQ(stringList1.get(2), stringList.get(2));
     EXPECT_EQ(stringList1.get(0), stringList.get(0));
 }
@@ -85,9 +85,33 @@ TEST(LinkedListTests, copyOper)
     EXPECT_EQ(intList2.get(3), intList.get(3));
     EXPECT_EQ(intList2.get(0), intList.get(0));
 
-    LinkedList<int> stringList2;
+    LinkedList<std::string> stringList2;
     stringList2 = stringList;
     EXPECT_EQ(stringList2.get(2), stringList.get(2));
     EXPECT_EQ(stringList2.get(0), stringList.get(0));
 }
 
+TEST(LinkedListTests, moveConstructor)
+{
+    LinkedList<int> list1;
+    list1.insert(123);
+    list1.insert(21);
+
+    LinkedList<int> list2(std::move(list1));
+    EXPECT_EQ(list2.get(0), 123);
+    EXPECT_EQ(list2.get(1), 21);
+
+}
+
+TEST(LinkedListTests, moveOperator)
+{
+    LinkedList<int> list1;
+    list1.insert(123);
+    list1.insert(21);
+
+    LinkedList<int> list2;
+    list2 = std::move(list1);
+    EXPECT_EQ(list2.get(0), 123);
+    EXPECT_EQ(list2.get(1), 21);
+
+}
